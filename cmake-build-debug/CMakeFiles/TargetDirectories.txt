@@ -1,0 +1,9 @@
+/home/aralary/CLionProjects/task1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/CMakeFiles/task1.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/area_lib/CMakeFiles/rebuild_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/area_lib/CMakeFiles/edit_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/area_lib/CMakeFiles/area_lib.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/Tests/CMakeFiles/rebuild_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/Tests/CMakeFiles/edit_cache.dir
+/home/aralary/CLionProjects/task1/cmake-build-debug/Tests/CMakeFiles/Tests.dir
