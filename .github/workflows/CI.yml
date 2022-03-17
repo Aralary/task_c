@@ -2,63 +2,31 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: []
-  pull_request:
-    branches: ["!master"]
+on: push
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  checks:
-    # The type of runner that the job will run on
+  check:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: prepare environment
-        run:  sudo apt install git &&
-          git submodule update --init
-
-      - name: checks
-        run:
-          docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t rusdevops/bootstrap-cpp scripts/checks.sh
-
-
-  tests:
+        run: sudo apt install valgrind
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    container: leshiy1295/gcc_linters
+    needs: [check]
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: prepare environment
-        run:  sudo apt install git &&
-          git submodule update --init
-
-      - name: tests
-        run:
-          docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/tests.sh
-
-
-  quality:
+      - run: make build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: main.out
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    container: leshiy1295/gcc_linters
+    needs: [build]
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: prepare environment
-        run:  sudo apt install git &&
-          git submodule update --init
-
-      - name: quality
-        run:
-          docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/coverage.sh
+      - run: make test
