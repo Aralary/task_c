@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: prepare environment
-        run: sudo apt install valgrind
+        run: valgrind --tool=memcheck --leak-check=yes ./Tests/Tests
   build:
     runs-on: ubuntu-latest
     container: leshiy1295/gcc_linters
