@@ -26,7 +26,7 @@ TEST(Area_test, area_error_count1) {
     double *y_arr[4] = {p, k, k, p};
     size_t x_size = sizeof(x_arr) / sizeof(double *);
     size_t y_size = sizeof(y_arr) / sizeof(double *);
-    double *res = area(x_arr,x_size, y_arr, y_size);
+    double *res = area(x_arr, x_size, y_arr, y_size);
     EXPECT_EQ(*res, -1);
     free(res);
 }
@@ -44,6 +44,7 @@ TEST(Area_test, area_error_count2) {
     EXPECT_EQ(*res, -1);
     free(res);
 }
+
 TEST(Area_test, area_empty) {
     double *x_arr[0] = {};
     double *y_arr[0] = {};
