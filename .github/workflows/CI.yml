@@ -25,6 +25,16 @@ jobs:
         run: cmake . -Bbuild -DBUILD_SANITIZERS=1 && cmake --build build --target Tests
       - name: memcheck
         run: ./build/Tests/Tests
+  sanitaizer_thread_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: prepare environment
+        run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
+      - name: build
+        run: cmake . -Bbuild -DBUILD_SANITIZERS_THREAD=1 && cmake --build build --target Tests
+      - name: memcheck
+        run: ./build/Tests/Tests
   linter:
     runs-on: ubuntu-latest
     steps:
