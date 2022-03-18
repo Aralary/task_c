@@ -11,7 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: prepare environment
-        run: valgrind --tool=memcheck --leak-check=yes ./Tests/Tests
+        run: apt update && apt install build-essential cmake gcc valgrind
+      - name: build
+        run: cmake . -Bbuild && cmake --build build --target Tests
+      - name: memcheck
+        run: valgrind --tool=memcheck --leak-check=yes ./build/Tests/Tests
   build:
     runs-on: ubuntu-latest
     container: leshiy1295/gcc_linters
