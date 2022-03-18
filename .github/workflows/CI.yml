@@ -7,7 +7,6 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: prepare environment
@@ -16,21 +15,28 @@ jobs:
         run: cmake . -Bbuild && cmake --build build --target Tests
       - name: memcheck
         run: valgrind --tool=memcheck --leak-check=yes ./build/Tests/Tests
-  build:
+  linter:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters
-    needs: [check]
     steps:
       - uses: actions/checkout@v2
-      - run: make build
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+      - name: prepare environment
+        run: sudo apt update && sudo apt install python3 python3-pip && pip3 install --user cpplint
+      - name: lint
+        run: ~/.local/bin/cpplint --recursive .
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: prepare environment
+        run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
+      - name: build
+        run: cmake . -Bbuild && cmake --build build --target Tests
+      - name: test run
+        run: ./build/Tests/Tests
+      - name: codecov
+        run: lcov -t "./build/Tests/Tests" -o coverage.info -c -d "./build/area_lib/CMakeFiles/area_lib.dir/" && genhtml -o report coverage.info && zip -r report.zip report
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          path: main.out
-  test:
-    runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make test
+          name: codecov-report
+          path: ./report.zip
