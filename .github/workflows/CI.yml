@@ -22,7 +22,7 @@ jobs:
       - name: prepare environment
         run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
       - name: build
-        run: cmake . -Bbuild -D BUILD_SANITIZERS && cmake --build build --target Tests
+        run: cmake . -Bbuild -DBUILD_SANITIZERS && cmake --build build --target Tests
       - name: memcheck
         run: ./build/Tests/Tests
   linter:
