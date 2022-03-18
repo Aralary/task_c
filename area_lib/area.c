@@ -1,5 +1,5 @@
 // Copyright 2022 Your Name <your_email>
-#include "area_lib_area.h"
+#include "area.h"
 
 double *area(double *x_arr[], size_t x_size, double *y_arr[], size_t y_size) {
     double *res = malloc(sizeof(double));
