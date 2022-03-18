@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#define UNTITLED_AREA_H
+#define AREA_LIB_AREA_H_
 
 double *area(double *x_arr[], size_t x_size, double *y_arr[], size_t y_size);
 

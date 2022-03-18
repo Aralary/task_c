@@ -55,6 +55,6 @@ TEST(Area_test, area_empty) {
     EXPECT_EQ(*res, 0);
     free(res);
 }
-//valgrind --tool=memcheck --leak-check=yes ./Tests/Tests проверка утечек памяти
-//genhtml -o report coverage.info показать покрытие
-//lcov -t "Tests/CMakeFiles/Tests" -o coverage.info -c -d area_lib/CMakeFiles/area_lib.dir/  проверить покрытие кода тестами
+// valgrind --tool=memcheck --leak-check=yes ./Tests/Tests проверка утечек памяти
+// genhtml -o report coverage.info показать покрытие
+// lcov -t "Tests/CMakeFiles/Tests" -o coverage.info -c -d area_lib/CMakeFiles/area_lib.dir/
