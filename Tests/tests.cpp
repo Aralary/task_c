@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "area.h"
+#include "area_lib.h"
 }
 TEST(Area_test, area_good_count) {
     double a = 0;
