@@ -24,7 +24,7 @@ TEST(Area_test, area_good_count) {
     size_t y_size1 = sizeof(y_arr1) / sizeof(double *);
     double *res1 = area(x_arr1, x_size1, y_arr1, y_size1);
     EXPECT_EQ(*res1, 6200);
-//    free(res1);
+    free(res1);
 }
 
 TEST(Area_test, area_error_count1) {

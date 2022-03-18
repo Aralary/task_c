@@ -13,7 +13,7 @@ jobs:
         run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
       - name: build
         run: cmake . -Bbuild && cmake --build build --target Tests
-      - name: memcheck
+      - name: valgrind_memcheck
         run: valgrind --tool=memcheck --leak-check=yes ./build/Tests/Tests
   sanitaizer_check:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
         run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
       - name: build
         run: cmake . -Bbuild -DBUILD_SANITIZERS=1 && cmake --build build --target Tests
-      - name: memcheck
+      - name: sanitizer_memcheck
         run: ./build/Tests/Tests
   sanitaizer_thread_check:
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
         run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
       - name: build
         run: cmake . -Bbuild -DBUILD_SANITIZERS_THREAD=1 && cmake --build build --target Tests
-      - name: memcheck
+      - name: thread_sanitizer_check
         run: ./build/Tests/Tests
   linter:
     runs-on: ubuntu-latest
