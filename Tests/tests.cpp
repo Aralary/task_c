@@ -53,8 +53,5 @@ TEST(Area_test, area_empty) {
     size_t y_size = sizeof(y_arr) / sizeof(double *);
     double *res = area(x_arr, x_size, y_arr, y_size);
     EXPECT_EQ(*res, 0);
-    free(res);
+//    free(res);
 }
-// valgrind --tool=memcheck --leak-check=yes ./Tests/Tests проверка утечек памяти
-// genhtml -o report coverage.info показать покрытие
-// lcov -t "Tests/CMakeFiles/Tests" -o coverage.info -c -d area_lib/CMakeFiles/area_lib.dir/

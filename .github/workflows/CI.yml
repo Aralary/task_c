@@ -5,7 +5,7 @@ name: CI
 on: push
 
 jobs:
-  check:
+  valgrind_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,6 +15,16 @@ jobs:
         run: cmake . -Bbuild && cmake --build build --target Tests
       - name: memcheck
         run: valgrind --tool=memcheck --leak-check=yes ./build/Tests/Tests
+  sanitaizer_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: prepare environment
+        run: sudo apt update && sudo apt install build-essential libgtest-dev cmake gcc valgrind
+      - name: build
+        run: cmake . -Bbuild -D BUILD_SANITIZERS && cmake --build build --target Tests
+      - name: memcheck
+        run: ./build/Tests/Tests
   linter:
     runs-on: ubuntu-latest
     steps:

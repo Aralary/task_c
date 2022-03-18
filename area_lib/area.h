@@ -8,4 +8,4 @@
 
 double *area(double *x_arr[], size_t x_size, double *y_arr[], size_t y_size);
 
-#endif //AREA_LIB_AREA_H_
+#endif  // AREA_LIB_AREA_H_
