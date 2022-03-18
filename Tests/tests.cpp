@@ -15,7 +15,7 @@ TEST(Area_test, area_good_count) {
     size_t y_size = sizeof(y_arr) / sizeof(double *);
     double *res = area(x_arr, x_size, y_arr, y_size);
     EXPECT_EQ(*res, 4);
-    free(res);
+//    free(res);
 
     double mas[] = {100, 150, 180, 200, 210, 220, 240, 250, 300};
     double *x_arr1[5] = {&mas[1], &mas[5], &mas[3], &mas[7], &mas[4]};

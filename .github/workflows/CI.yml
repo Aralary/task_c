@@ -14,7 +14,7 @@ jobs:
       - name: build
         run: cmake . -Bbuild && cmake --build build --target Tests
       - name: valgrind_memcheck
-        run: valgrind --tool=memcheck --leak-check=yes ./build/Tests/Tests
+        run: valgrind --tool=memcheck --leak-check=yes --error-exitcode=1 ./build/Tests/Tests
   sanitaizer_check:
     runs-on: ubuntu-latest
     steps:
