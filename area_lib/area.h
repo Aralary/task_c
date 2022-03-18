@@ -1,7 +1,4 @@
-//
-// Created by aralary on 14/03/2022.
-//
-
+// Copyright 2022 Your Name <your_email>
 #ifndef UNTITLED_AREA_H
 
 #include <stdio.h>
